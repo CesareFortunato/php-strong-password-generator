@@ -1,6 +1,21 @@
 <?php
-include 'functions.php';
+session_start();
+include_once 'functions.php';
+
 ?>
+
+<?php
+    $newPass = "";
+    if (isset($_POST['submit'])) {
+        $newPass = setNewPass($_POST['lunghezza_pass']);
+        $_SESSION['password'] = $newPass;
+        header('Location: ./result.php');
+
+        exit;
+    }
+
+
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,16 +39,9 @@ include 'functions.php';
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </form>
 
-    <?php
-    $newPass = "";
-    if (isset($_POST['submit'])) {
-        $newPass = setNewPass($_POST['lunghezza_pass']);
-    }
+    
 
 
-    ?>
-
-    <h2><?php echo $newPass ?></h2>
 
 </body>
 
